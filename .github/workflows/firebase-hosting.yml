@@ -1,0 +1,24 @@
+name: Deploy Firebase Hosting - netcodebr-c3110
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🧩 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🔥 Firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: 🚀 Deploy
+        env:
+          CHAVE_ACESSO_GOOGLE_CREDENTIALS: ${{ secrets.CHAVE_ACESSO_GOOGLE_CREDENTIALS }}
+        run: |
+          echo "${CHAVE_ACESSO_GOOGLE_CREDENTIALS}" > ${HOME}/gcp-key.json
+          export GOOGLE_APPLICATION_CREDENTIALS=${HOME}/gcp-key.json
+          firebase deploy --only hosting --project netcodebr-c3110
