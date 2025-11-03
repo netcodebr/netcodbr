@@ -1,1 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NetcodeBR • PWA + Firebase Hosting</title>
 
+  <!-- Manifest PWA -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#0b1120" />
+
+  <!-- Ícone -->
+  <link rel="icon" href="icons/icon-192.png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">🚀 NetcodeBR</div>
+    <button id="btn-install" class="btn ghost">Instalar PWA</button>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h1>Firebase Hosting + PWA</h1>
+      <p>Projeto base publicado no <b>Firebase Hosting</b> com <b>PWA</b> pronto, <b>SW</b> e <b>Actions</b>.</p>
+
+      <div class="grid">
+        <div class="pill ok">✔ Manifest</div>
+        <div class="pill ok">✔ Service Worker</div>
+        <div class="pill ok">✔ Offline básico</div>
+        <div class="pill ok">✔ GitHub Actions</div>
+        <div class="pill ok">✔ Firebase SDK 12.5.0</div>
+      </div>
+
+      <hr />
+
+      <h2>Teste rápido do Firebase</h2>
+      <p id="fb-status" class="muted">Iniciando Firebase…</p>
+      <button id="btn-test" class="btn">Testar app Firebase</button>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>NetcodeBR • Firebase Hosting • PWA • © <span id="year"></span></small>
+  </footer>
+
+  <!-- Firebase config (módulo) -->
+  <script type="module" src="firebase.js"></script>
+
+  <!-- App -->
+  <script type="module" src="app.js"></script>
+
+  <!-- Service Worker registrator -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js');
+      });
+    }
+  </script>
+</body>
+</html>
